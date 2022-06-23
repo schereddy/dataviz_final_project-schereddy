@@ -1,0 +1,370 @@
+---
+title: "Mini_Proj_2_report"
+author: "susmitha chereddy schereddy2371@floridapoly.edu"
+date: '2022-06-15'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+# Interactive plot
+
+__interactive plot using fifa18 dataset__ : here we are trying to see if age group has any effect on the potential, shot  and passing capabilities of the player.
+
+fifa18 dataset contains 17076 rows and 40 columns depicting different attributes of the player like stamina,potential, ability to kick, pass and display aggressiona nd balance.
+	
+```{r cars}
+fifa <- read_csv("C:/Susmitha Chereddy/Data_visualization/Mini_project_2_chereddy/data/fifa18.csv")
+fifa
+```
+
+```{r}
+summary(fifa$age)
+```
+```{r}
+
+fifa_group <-fifa %>% mutate(
+                              # Create categories
+                              age_group = dplyr::case_when(
+                              age <= 21            ~ "very_young",
+                              age > 21 & age <= 25 ~ "young",
+                              age > 25 & age <= 28 ~ "prime",
+                              age > 28             ~ "experienced"
+                            ),
+                            # Convert to factor
+                            age_group = factor(age_group,level = c("very_young", "young","prime", "experienced"))
+                            )
+
+fifa_group
+```
+
+Visualizing relationship between shot_power and long_passing 
+```{r}
+library(viridis)
+my_fifa_plot_1 <- ggplot(data = fifa_group) +
+ geom_point(aes(x = shot_power, y = long_passing,
+                color=age_group), alpha = 0.5)+
+ scale_color_viridis(discrete = TRUE)+
+ scale_x_log10() +
+ labs(title = "Relationship between shot_power and long_passing",
+        subtitle = "fifa datset",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+fifa_plot<- my_fifa_plot_1 +annotate("text", x = c(50,50), y = c(50,50), 
+           label = c("Long-pass ~ shot power") , color="white", 
+           size=4 , angle=45, fontface="bold") 
+fifa_plot
+```
+```{r}
+library(plotly)
+ggplotly(fifa_plot)
+```
+
+Visualizing relation ship between potential and standing_tackle
+```{r}
+library(viridis)
+my_fifa_plot_2 <- ggplot(data = fifa_group) +
+ geom_point(aes(x = potential, y = standing_tackle,
+                color=age_group), alpha = 0.5)+
+ scale_color_viridis(discrete = TRUE)+
+ scale_x_log10() +
+  labs(title = "Relationship between potential and standing_tackle",
+        subtitle = "fifa datset",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+my_fifa_plot_2
+```
+```{r}
+library(plotly)
+ggplotly(my_fifa_plot_2)
+
+```
+
+# spatial visualization
+
+__spatial visualization using florida lakes data set__: plotting to visualize the number of lakes in state of florida and especially the polk country if the name lakleand has any relation to the number of lakes here
+	Florida Lakes Dataset contains: 4234 rows and 7 columns.
+	1.PERIMETER
+	2.NAME
+	3.COUNTY
+	4.OBJECTID
+	5.SHAPEAREA
+	6.SHAPELEN
+	7.geometry
+```{r}
+library(sf)
+
+florida_shapes <- read_sf("C:/Susmitha Chereddy/Data_visualization/Mini_project_2_chereddy/data/Florida_Lakes/Florida_Lakes/Florida_Lakes.shp") 
+florida_shapes
+```
+
+Visualizing all lakes in Florida
+```{r}
+ggplot()+
+ geom_sf(data = florida_shapes, aes(fill = SHAPEAREA),
+ color = "black", size = 0.15) +
+ scale_fill_gradient(labels = scales::comma)+
+ theme(legend.position = "right")+
+ scale_fill_continuous(low="Darkblue", high="blue", 
+                       guide="colorbar",na.value="DarkGrey")+
+  labs(title = "Map of All Lakes in state of Florida",
+        subtitle = "Lakes shown in blue",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+
+```
+
+Visualizing lakes in Orange county
+```{r}
+florida_shapes %>%
+ filter(COUNTY == "ORANGE") %>%
+ ggplot() +
+ geom_sf(aes(fill = SHAPEAREA),
+ color = "black", size = 0.15) +
+ scale_fill_gradient(labels = scales::comma)+
+ theme(legend.position = "right")+
+ scale_fill_continuous(low="navyblue", high="blue", 
+                       guide="colorbar",na.value="DarkGrey")+
+  labs(title = "Map of All Lakes in Orange County",
+        subtitle = "Orange County: State of Florida",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+```
+
+Visualizing lakes in polk county
+```{r}
+florida_shapes %>%
+ filter(COUNTY == "POLK") %>%
+ ggplot() +
+ geom_sf(aes(fill = SHAPEAREA),
+ color = "black", size = 0.15) +
+ scale_fill_gradient(labels = scales::comma)+
+ theme(legend.position = "right")+
+ scale_fill_continuous(low="navyblue", high="blue", 
+                       guide="colorbar",na.value="DarkGrey")+
+  labs(title = "Map of All Lakes in PASCO County",
+        subtitle = "Orange County: State of Florida",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+```
+
+Visualizing lakes of florida with Perimeter as fill
+```{r}
+ggplot()+
+ geom_sf(data = florida_shapes, aes(fill = PERIMETER),
+ color = "black", size = 0.15) +
+ scale_fill_gradient(labels = scales::comma)+
+ theme(legend.position = "right")+
+ scale_fill_continuous(low="Darkblue", high="blue", 
+                       guide="colorbar",na.value="DarkGrey")+
+  labs(title = " Perimeter Map of All Lakes in state of Florida",
+        subtitle = "Lakes shown in blue",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+```
+
+
+# visualization of a model
+
+__Visualization of the model on Housing data set__: here we are visualizing the prediction of House prices using Housing dataset and see how different variables affect the resultant prices
+	WestRoxbury dataset contains 5802 rows with 14 columns.
+	1.Total_Value
+	2.TAX
+	3.LOT_SQFT
+	4.YR BUILT
+	5.GROSS AREA
+	6.LIVING AREA
+	7.FLOORS
+	8.ROOMS
+	9.BEDROOMS
+	10.FULL_BATH
+	11.HALF_BATH
+	12.KITCHEN
+	13.FIREPLACE
+	14.REMODEL
+	
+```{r}
+WestRoxbury <- read_csv("C:/Susmitha Chereddy/Data_visualization/Mini_project_2_chereddy/data/WestRoxbury.csv") %>% rename (Total_Value = `TOTAL VALUE`,LOT_SQFT=`LOT SQFT`,GROSS_AREA=`GROSS AREA`,FULL_BATH=`FULL BATH`,LIVING_AREA=`LIVING AREA`,HALF_BATH=`HALF BATH`)
+WestRoxbury
+```
+
+```{r}
+summary(WestRoxbury$FLOORS)
+```
+Linear model Total_Value~LOT_SQFT
+```{r}
+ggplot(WestRoxbury, aes(x = LOT_SQFT, y = Total_Value)) +
+ geom_point() +
+ geom_smooth(method = "lm",formula = "y ~ x") +
+ theme_minimal()+
+  labs(title = "Interaction between Total House Value and LOT AREA",
+        subtitle = "Total value in $$ and LOT Area in SQFT",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+```
+Linear model Total_Value~GROSS_AREA
+```{r}
+
+ggplot(WestRoxbury, aes(x = GROSS_AREA, y = Total_Value)) +
+ geom_point() +
+ geom_smooth(method = "lm",formula = "y ~ x") +
+ theme_minimal()+
+  labs(title = "Interaction between Total House Value and GROSS AREA",
+        subtitle = "Total value in $$ and GROSS Area in SQFT",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+```
+Linear model Total_Value~LIVING_AREA
+```{r}
+
+ggplot(WestRoxbury, aes(x = LIVING_AREA, y = Total_Value)) +
+ geom_point() +
+ geom_smooth(method = "lm",formula = "y ~ x") +
+ theme_minimal()+
+  labs(title = "Interaction between Total House Value and LIVING AREA",
+        subtitle = "Total value in $$ and LIVING Area in SQFT",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+```
+
+Linear Model Total_Value ~ LOT_SQFT + HALF_BATH + FLOORS
+```{r}
+library(broom)
+house_model <- lm(Total_Value ~ LOT_SQFT + HALF_BATH + FLOORS, data= WestRoxbury)
+house_coefs <- tidy(house_model, conf.int = TRUE) %>%
+ filter(term != "(Intercept)") # We can typically skip plotting the intercept, so remove it
+house_coefs
+
+```
+
+plotting graph of estimates for the house Model (Total_Value ~ LOT_SQFT + HALF_BATH + FLOORS)
+```{r}
+ggplot(house_coefs,
+ aes(x = estimate,
+ y = fct_rev(term))) +
+ geom_pointrange(aes(xmin = conf.low,
+ xmax = conf.high)) +
+ geom_vline(xintercept = 0,
+ color = "purple") +
+ theme_minimal()+
+  labs(title = " Graph of Estimates used in the model (LOT_SQFT,HALF_BATH,FLOORS)",
+        subtitle = "LOT Area in SQFT Floor and half bath in levels 1,2,3",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+```
+
+
+
+```{r}
+
+house_new_data <- expand_grid(
+ LOT_SQFT = mean(WestRoxbury$LOT_SQFT),
+ FLOORS = c(1,2,3),
+ HALF_BATH = c(1,2,3))
+head(house_new_data)
+
+```
+
+
+```{r}
+predicted_house <- augment(
+ house_model,
+ newdata = house_new_data,
+ se_fit = TRUE
+ )
+head(predicted_house)
+```
+
+plot for fitted values for each row
+```{r}
+
+ggplot(predicted_house,
+ aes(x = FLOORS, y = .fitted)) +
+ geom_ribbon(aes(ymin = .fitted +
+ (-1.96 * .se.fit),
+ ymax = .fitted +
+ (1.96 * .se.fit),
+ fill = HALF_BATH),
+ alpha = 0.5) +
+ geom_line(aes(color = HALF_BATH), size = 1) +
+ guides(fill = FALSE, color = FALSE) +
+ facet_wrap(vars(HALF_BATH)) +
+ theme_minimal()+
+ labs(title = "plot for fitted values for each row",
+        subtitle = "Total value in $$ and LOT Area in SQFT",
+        caption = "Data source: reisanar/datasets")+
+  theme(plot.title = element_text(hjust = 0.5, size = 14),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1, face = "italic"))
+
+```
+
+
+# REPORT
+
+__What were the original charts you planned to create for this assignments? What steps were necessary for cleaning and preparing the data?__
+
+I have used 3 datasets for this mini project. For the first Interactive visualization plot, I wanted to identify the differences between power, passing, Tackle and potential of different players. Since there is no age group I used Age to group the data into four groups and then used to perform my analysis.
+
+For the second dataset, since it was spatial visualization, i used the data as it is available. For the Third dataset, I change the variable names to avoid the extra spaces between the variables.
+
+__What story could you tell with your plots? What difficulties did you encounter while creating the visualizations? What additional approaches do you think can be use to explore the data you selected?__
+
+From the First interaction plot, 
+
+1. I could say the shot_power and long passing are highly correlated and it makes sense since you need shot_power for passing the ball long.
+2. I could also say that: Although there is enough correlation between standing tackle and potential, we see enough enough data points to say that this correlation is not strong enough.
+3. Also, another finding is that Age has very effect on power, passing, Tackle and potential of players.
+
+From the Spatial Visualization plot:
+
+1. we could say that although the data set does not give the shape of Florida, visualizing all the lakes gives a rough shape of Florida which says that coast of florida have a lot of lakes. So many that it gives the shape of the cost.
+2. Also, after visualuzing the the lakes in Polk county, we could see how lakeland got it's name.
+
+From the Visualization of Model, we could see that
+
+1. Number of FLOORS and HALF_BATH in a Home are highly significant in predictng the price of the home in the respective order.
+2. Co-efficient of LOT_SQFT is almost close to zero, which means it is very less significant compared to other variables.
+
+__How did you apply the principles of data visualizations and design for this assignment?__
+
+1. I made sure that proper Color palette are used for accurate representation of graphs. 
+2. All graphs are provided with Titles and captions to explain about the information regarding the Grpah/Chart. 
+3. Size of the Chart have been adjusted accordingly to include all the elements in the chart
+3. Legend positions have been adjusted to make sure that scales are properly visible.
+
+
