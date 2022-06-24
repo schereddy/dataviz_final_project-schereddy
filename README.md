@@ -41,8 +41,7 @@ In this project, I explored ... _[short description of your revised project goes
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-<img src="https://github.com/reisanar/figs/raw/master/jackie_jessie_marion.png" width="80%" height="80%">
-
+![project3_image](https://user-images.githubusercontent.com/104657112/175608197-b43dc441-a885-45f7-bae0-d5ee8a59b8f5.png)
 
 ### Moving Forward
 
