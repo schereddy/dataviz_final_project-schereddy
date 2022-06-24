@@ -28,7 +28,7 @@ In this project, I explored ... _[short description of your revised project goes
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-![project2_image](https://user-images.githubusercontent.com/104657112/175606908-4f63e90c-c3b9-469a-97de-764b5e286b7e.png)![image](https://user-images.githubusercontent.com/104657112/175607360-f7724c9d-4de4-48f7-9433-fd06c69fe7f0.png)
+![image](https://user-images.githubusercontent.com/104657112/175607360-f7724c9d-4de4-48f7-9433-fd06c69fe7f0.png)
 
 
 (you can also place your figures in the `figures/` folder and use the `![](path_to_picture)` option to add the pictures here)
