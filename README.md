@@ -15,7 +15,8 @@ In the `project_01/` folder you can find... _[short description of your revised 
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-<img src="https://github.com/reisanar/figs/raw/master/echarts.png" width="70%" height="70%">
+![project1_image](https://user-images.githubusercontent.com/104657112/175607112-82fdd2e0-ee24-4620-9085-ce9b7194e7ab.png)![image](https://user-images.githubusercontent.com/104657112/175607304-7e8e6e29-1202-43b6-9d2d-d2c9b071f6f6.png)
+
 
 
 
@@ -27,7 +28,8 @@ In this project, I explored ... _[short description of your revised project goes
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-<img src="https://github.com/reisanar/dataviz_final_project/blob/main/figures/fl_higher_ed.png" width="60%" height="60%">
+![project2_image](https://user-images.githubusercontent.com/104657112/175606908-4f63e90c-c3b9-469a-97de-764b5e286b7e.png)
+
 
 (you can also place your figures in the `figures/` folder and use the `![](path_to_picture)` option to add the pictures here)
 
@@ -39,8 +41,7 @@ In this project, I explored ... _[short description of your revised project goes
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-<img src="https://github.com/reisanar/figs/raw/master/jackie_jessie_marion.png" width="80%" height="80%">
-
+![project3_image](https://user-images.githubusercontent.com/104657112/175608197-b43dc441-a885-45f7-bae0-d5ee8a59b8f5.png)
 
 ### Moving Forward
 
