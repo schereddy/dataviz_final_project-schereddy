@@ -17,14 +17,26 @@ In this exercise you will explore methods to visualize text data and practice ho
 
 Using the dataset obtained from FSU's [Florida Climate Center](https://climatecenter.fsu.edu/climate-data-access-tools/downloadable-data), for a station at Tampa International Airport (TPA) from 2016 to 2017, attempt to recreate the charts shown below
 
-```{r, message=FALSE, warning=FALSE}
+
+```r
 library(tidyverse)
 weather_tpa <- read_csv("https://github.com/reisanar/datasets/raw/master/tpa_weather_16_17.csv")
 # random sample 
 sample_n(weather_tpa, 4)
 ```
 
-```{r}
+```
+## # A tibble: 4 × 6
+##    year month   day precipitation max_temp min_temp
+##   <dbl> <dbl> <dbl>         <dbl>    <dbl>    <dbl>
+## 1  2016    10    11          0          84       68
+## 2  2016     7    29          0.03       90       82
+## 3  2016     6    15          0          91       81
+## 4  2016     7    20          0.04       93       76
+```
+
+
+```r
 weather_tpa <- weather_tpa %>%
   mutate(month=as_factor(month)) 
 
@@ -32,110 +44,86 @@ levels(weather_tpa$month) <- c("January", "February", "March", "April", "May", "
 weather_tpa
 ```
 
+```
+## # A tibble: 367 × 6
+##     year month     day precipitation max_temp min_temp
+##    <dbl> <fct>   <dbl>         <dbl>    <dbl>    <dbl>
+##  1  2016 January     1          0          81       70
+##  2  2016 January     2          0          73       59
+##  3  2016 January     3          0.18       61       50
+##  4  2016 January     4          0          66       49
+##  5  2016 January     5          0          68       49
+##  6  2016 January     6          0          67       54
+##  7  2016 January     7          0          72       56
+##  8  2016 January     8          0.54       76       63
+##  9  2016 January     9          0.65       78       62
+## 10  2016 January    10          0          72       56
+## # … with 357 more rows
+```
+
 See https://www.reisanar.com/slides/relationships-models#10 for a reminder on how to use this dataset with the `lubridate` package for dates and times.
 
 
 (a) Recreate the plot below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_facet.png")
-```
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_facet.png" width="80%" style="display: block; margin: auto;" />
 
 
-```{r}
+
+```r
 #library(viridis)
 #library(viridisLite)
-ggplot(data=weather_tpa, aes(max_temp)) + 
+ggplot(data=weather_tpa, aes(max_temp,fill=max_temp)) + 
   geom_histogram(aes(fill=month),binwidth = 3,show.legend = FALSE)+
   facet_wrap(~month)+
 #  scale_color_viridis(discrete = TRUE) +
 #  scale_fill_brewer(palette = "Dark2")+
   xlab("Maximum Temperature") +
-  ylab("Number of Days")+
-  scale_fill_viridis_d()
-
+  ylab("Number of Days")
 ```
+
+![](chereddy_project_03_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 Hint: the option `binwidth = 3` was used with the `geom_histogram()` function.
 
 (b) Recreate the plot below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_density.png")
-```
-```{r}
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_density.png" width="80%" style="display: block; margin: auto;" />
+
+
+```r
 ggplot(data=weather_tpa,aes(x=max_temp))+
   geom_density(fill="grey",bw = 0.5,kernel="optcosine",outline.type = "upper")+
   xlab("Maximum Temperature")
 ```
 
+![](chereddy_project_03_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 Hint: check the `kernel` parameter of the `geom_density()` function, and use `bw = 0.5`.
 
 (c) Recreate the chart below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_density_facet.png")
-```
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_density_facet.png" width="80%" style="display: block; margin: auto;" />
 
 
-```{r}
-ggplot(data=weather_tpa,aes(x=max_temp))+
-  geom_density(aes(fill=month),show.legend = FALSE)+
-  labs(title = "Density plot for each month of 2016")+
-  facet_wrap(~month)+
-  xlab("Maximum Temperatures")+
-  scale_fill_viridis_d()
-```
 
 Hint: default options for `geom_density()` were used. 
 
 (d) Recreate the chart below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges.png")
-
-```
-
-
-
-```{r}
-
-```
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges.png" width="80%" style="display: block; margin: auto;" />
 
 Hint: default options for `geom_density()` were used. 
 
 (e) Recreate the plot below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges.png")
-```
-
-```{r}
-library(ggridges)
-ggplot(data=weather_tpa,aes(x=max_temp,y=month,fill=month),show.legend="False")+
-  geom_density_ridges()+
-  theme_ridges()+
-  scale_fill_viridis_d()
-```
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges.png" width="80%" style="display: block; margin: auto;" />
 
 Hint: use the`ggridges` package, and the `geom_density_ridges()` function paying close attention to the `quantile_lines` and `quantiles` parameters.
 
 (f) Recreate the chart below:
 
-```{r, echo = FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges_plasma.png")
-```
-
-```{r}
-
-library(ggridges)
-library(viridis)
-ggplot(data=weather_tpa,aes(x=max_temp,y=month,fill=month),show.legend="False")+
-  geom_density_ridges(show.legend="False")+
-  theme_ridges()+
-  scale_fill_viridis_d(option = "plasma")
-```
+<img src="https://github.com/reisanar/figs/raw/master/tpa_max_temps_ridges_plasma.png" width="80%" style="display: block; margin: auto;" />
 
 Hint: this uses the `plasma` option (color scale) for the _viridis_ palette.
 
@@ -159,67 +147,3 @@ Make sure to include a copy of the dataset in the `data/` folder, and reference 
 - [FL Poly News 2019](https://github.com/reisanar/datasets/blob/master/poly_news_FL19.csv)
 
 (to get the "raw" data from any of the links listed above, simply click on the `raw` button of the GitHub page and copy the URL to be able to read it in your computer using the `read_csv()` function)
-
-
-```{r}
-
-BB_2015 <- read_csv("C:/Susmitha Chereddy/Data_visualization/dataviz_final_project-schereddy-main/dataviz_final_project-schereddy/data/BB_top100_2015.csv")
-BB_2015
-```
-
-```{r}
-# install the required packages
-install.packages("tm")           # for text mining
-install.packages("SnowballC")    # for text stemming
-install.packages("wordcloud")    # word-cloud generator
-install.packages("RColorBrewer") # color palettes
-```
-
-```{r}
-library("tm")
-library("SnowballC")
-library("wordcloud")
-library("RColorBrewer")
-```
-
-```{r}
-#Create a vector containing only the text
-text <- BB_2015$Lyrics
-```
-
-```{r}
-# Create a corpus  
-docs <- Corpus(VectorSource(text))
-```
-
-
-```{r}
-docs <- docs %>%
-  tm_map(removeNumbers) %>%
-  tm_map(removePunctuation) %>%
-  tm_map(stripWhitespace)
-docs <- tm_map(docs, content_transformer(tolower))
-docs <- tm_map(docs, removeWords, stopwords("english"))
-docs
-```
-
-```{r}
-dtm <- TermDocumentMatrix(docs) 
-matrix <- as.matrix(dtm) 
-words <- sort(rowSums(matrix),decreasing=TRUE) 
-df <- data.frame(word = names(words),freq=words)
-df
-```
-
-```{r}
-set.seed(1234) # for reproducibility 
-wordcloud(words = df$word, freq = df$freq, min.freq = 1,
-          max.words=200, random.order=FALSE, rot.per=0.35,
-          colors=brewer.pal(8, "Dark2"))
-```
-
-```{r}
-library(wordcloud2)
-wordcloud2(data=df, size=1.6, color='random-dark')
-```
-
