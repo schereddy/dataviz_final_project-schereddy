@@ -37,8 +37,8 @@ Here is my favorite visualization form the project that explains about density o
 
 ## Project 02
 
-In the `project_01/` folder you can find   
-1.data/ :about births in US from 2010-14  
+In the `project_02/` folder you can find   
+1.data/ : Fifa_18 player attributes dataset, Florida_lakes shapes dataset and WestRoxbury Housing Dataset
 2.report/ : HTML report and RMD file for the project  
 3.Code and project report along with README and an RProj file.  
 
