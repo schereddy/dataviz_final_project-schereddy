@@ -98,10 +98,25 @@ _[include your favorite visualization from this project here]_
 
 ## Project 03
 
-In this project, I explored ... _[short description of your revised project goes here]_
+In this project we are trying to anlayse the weather data for the city of tampa and also build a wordcloud using a billboards dataset.   
+we are tyring to see what are the hottest and coldest months in tampa.  
+tampa weather dataset has [367 rows × 6 columns ]   
+ $ year         : num [1:367] 2016 2016 2016 2016 2016     
+ $ month        : Factor w/ 12 levels "January","February",..:     
+ $ day          : num [1:367] 1 2 3 4 5 6 7 8 9 10 ...    
+ $ precipitation: num [1:367] 0 0 0.18 0 0 0 0 0.54 0.65 0 ...    
+ $ max_temp     : num [1:367] 81 73 61 66 68 67 72 76 78 72 ...    
+ $ min_temp     : num [1:367] 70 59 50 49 49 54 56 63 62 56 ...   
+
+Billboard dataset has [100 rows  × 6 coulmns]   
+ $ Rank  : num [1:100] 1 2 3 4 5 6 7 8 9 10 ...  
+ $ Song  : chr [1:100] "uptown funk" "thinking out loud" "see you again" "trap queen" ...  
+ $ Artist: chr [1:100] "mark ronson featuring bruno mars" "ed sheeran" "wiz khalifa featuring charlie puth" "fetty wap" ...  
+ $ Year  : num [1:100] 2015 2015 2015 2015 2015 ...  
+ $ Lyrics: chr [1:100] "this hit that ice cold michelle pfeiffer that white gold this one for them hood girls them good girls straight "| __truncated__ "when your legs dont work like 
 
 **Sample data visualization:** 
-
+Here a visulization of wordcloud on billboard data
 _[include your favorite visualization from this project here]_
 ![project3_image_2](https://user-images.githubusercontent.com/104657112/175614063-0251c1fe-06ec-479c-9910-329f809d2226.png)
 
