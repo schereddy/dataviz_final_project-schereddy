@@ -60,9 +60,10 @@ In this project, we are trying to produce three different charts using 3 dataset
 	e.SHAPEAREA
 	f.SHAPELEN
 	g.geometry
-		Summary of observations:
-		1. we could say that although the data set does not give the shape of Florida, visualizing all the lakes gives a rough shape of Florida which says that coast of florida have a lot of lakes. So many that it gives the shape of the cost.
-		2. Also, after visualizing the the lakes in Polk county, we could see how lakeland got it's name.
+	
+__Summary of observations:__  
+		1. we could say that although the data set does not give the shape of Florida, visualizing all the lakes gives a rough shape of Florida which says that coast of florida have a lot of lakes. So many that it gives the shape of the cost.  
+		2. Also, after visualizing the the lakes in Polk county, we could see how lakeland got it's name.  
 		
 - Visualization of the model on Housing dataset: here we are visualizing the prediction of House prices using Housing dataset and see how different variables affect the resultant prices
 	WestRoxbury dataset contains 5802 rows with 14 columns.
