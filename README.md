@@ -10,7 +10,10 @@ The following is a sample of products created during the _"Data Visualization an
 
 ## Project 01
 
-In the `project_01/` folder you can find... _[short description of your revised project goes here]_
+In the `project_01/` folder you can find 
+1.data/ :about births in US from 2010-14
+2.report/ : HTML report and RMD file for the project
+3.Code and project report along with README and an RProj file.
 
 **Sample data visualization:** 
 
