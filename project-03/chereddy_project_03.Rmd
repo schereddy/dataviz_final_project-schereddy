@@ -35,9 +35,6 @@ weather_tpa
 str(weather_tpa)
 ```
 
-See https://www.reisanar.com/slides/relationships-models#10 for a reminder on how to use this dataset with the `lubridate` package for dates and times.
-
-
 (a) Recreate the plot below:
 
 ```{r, echo = FALSE, out.width="80%", fig.align='center'}
@@ -181,14 +178,11 @@ BB_2015 <- read_csv("data/BB_top100_2015.csv")
 BB_2015
 ```
 
-```{r}
-# install the required packages
-install.packages("tm")           # for text mining
-install.packages("SnowballC")    # for text stemming
-install.packages("wordcloud")    # word-cloud generator
-install.packages("RColorBrewer") # color palettes
 
+```{r}
+str(BB_2015)
 ```
+
 
 ```{r}
 library("tm")
@@ -223,7 +217,6 @@ dtm <- TermDocumentMatrix(docs)
 matrix <- as.matrix(dtm) 
 words <- sort(rowSums(matrix),decreasing=TRUE) 
 df <- data.frame(word = names(words),freq=words)
-df
 ```
 
 ```{r}
@@ -241,7 +234,7 @@ wordcloud2(data=df, size=1.6, color='random-dark')
 
 # Report
 
-###What were the original charts you planned to create for this assignments? What steps were necessary for cleaning and preparing the data?
+__What were the original charts you planned to create for this assignments? What steps were necessary for cleaning and preparing the data?__
 I planned to replicating the charts for Tampa weather analysis and I did convert the months to factor with levels to achieve this and for wordcloud, I had to do the following:
 
 1.making a text corpus
@@ -250,12 +243,12 @@ I planned to replicating the charts for Tampa weather analysis and I did convert
 4.making a word frequency data frame
 
 
-###What story could you tell with your plots? What difficulties did you encounter while creating the visualizations? What additional approaches do you think can be use to explore the data you selected?
+__What story could you tell with your plots? What difficulties did you encounter while creating the visualizations? What additional approaches do you think can be use to explore the data you selected?__
 
 From the plot on tampa weather, you can say that July & August are the hottets month sof the year while December and January are the coldest months.
 From the world cloud exercise, we can say that words that are mostly present on abill board are like,got, just,know, now, can etc.. all these are positive words and hence we can billboards mostly contain encoraging and positive language.
 
-###How did you apply the principles of data visualizations and design for this assignment?
+__How did you apply the principles of data visualizations and design for this assignment?__
 
 I applied principles of visualization in-terms of 
 1.simplicity by removing legends whenever not necessary
