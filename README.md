@@ -116,6 +116,11 @@ Billboard dataset has [100 rows  × 6 coulmns]
  $ Year  : num [1:100] 2015 2015 2015 2015 2015 ...  
  $ Lyrics: chr [1:100] "this hit that ice cold michelle pfeiffer that white gold this one for them hood girls them good girls straight "| __truncated__ "when your legs dont work like 
 
+ Project 03 folder structure:  
+ 
+ 1.data/ contains all data used in the project  
+ 2.README,PROJECT and HTML Report for the project  
+ 
 **Sample data visualization:** 
 Here a visulization of wordcloud on billboard data
 _[include your favorite visualization from this project here]_
