@@ -10,14 +10,14 @@ The following is a sample of products created during the _"Data Visualization an
 
 ## Project 01
 
-In the `project_01/` folder you can find /n 
-1.data/ :about births in US from 2010-14
-2.report/ : HTML report and RMD file for the project
+In the `project_01/` folder you can find \n 
+1.data/ :about births in US from 2010-14 \n
+2.report/ : HTML report and RMD file for the project \n
 3.Code and project report along with README and an RProj file.
 
 **Sample data visualization:** 
 
-_[include your favorite visualization from this project here]_
+Here is my favorite visualization form the project that explains about density of Births in US . From this graph, we can see the number of babies on the weekend are relatively less compared to weekdays.
 ![project1_image](https://user-images.githubusercontent.com/104657112/175607112-82fdd2e0-ee24-4620-9085-ce9b7194e7ab.png)![image](https://user-images.githubusercontent.com/104657112/175607304-7e8e6e29-1202-43b6-9d2d-d2c9b071f6f6.png)
 
 
