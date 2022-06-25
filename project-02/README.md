@@ -45,5 +45,5 @@ In this project, we are trying to produce three different charts using 3 dataset
 	
 	Summary of observations:
 	
-		1. Number of FLOORS and HALF_BATH in a Home are highly significant in predictng the price of the home in the respective order.
-		2. Co-efficient of LOT_SQFT is almost close to zero, which means it is very less significant compared to other variables.
+1. Number of FLOORS and HALF_BATH in a Home are highly significant in predictng the price of the home in the respective order.
+2. Co-efficient of LOT_SQFT is almost close to zero, which means it is very less significant compared to other variables.
