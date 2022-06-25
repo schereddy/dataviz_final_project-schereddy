@@ -123,4 +123,4 @@ _[include your favorite visualization from this project here]_
 
 ### Moving Forward
 
-_add here a short reflection on what you learned and what you plan to continue exploring in terms of data visualization, data storytelling, reproducible research, and/or related topics_
+In this course we have learnt various charts and principle that can be used to visualize data. Going forward, I would like to learn to use some more advanced techniques in creating Apps for visualization that can easliy shared among others.
