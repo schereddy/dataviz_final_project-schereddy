@@ -1,8 +1,8 @@
 # Data Visualization and Reproducible Research
 
-> Firstname Lastname. 
+> Susmitha Chereddy. 
 
-Learn more about me in my [GitHub profile page](https://github.com/reiminer)
+Learn more about me in my [GitHub profile page](https://github.com/schereddy)
 
 
 The following is a sample of products created during the _"Data Visualization and Reproducible Research"_ course.  
