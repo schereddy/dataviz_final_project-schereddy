@@ -16,7 +16,14 @@ Billboard dataset has [100 rows  × 6 coulmns]
  $ Year  : num [1:100] 2015 2015 2015 2015 2015 ...  
  $ Lyrics: chr [1:100] "this hit that ice cold michelle pfeiffer that white gold this one for them hood girls them good girls straight "| __truncated__ "when your legs dont work like   
  
+<<<<<<< HEAD
  Project 03 folder structure:  
  
  1.data/ contains all data used in the project  
  2.README,PROJECT and HTML Report for the project
+=======
+  Project 03 folder structure:  
+ 
+ 1.data/ contains all data used in the project  
+ 2.README,PROJECT and HTML Report for the project
+>>>>>>> 92e69f5774f895faf7600bff1ad92f43649c7651
