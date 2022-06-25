@@ -1,8 +1,8 @@
 # Data Visualization and Reproducible Research
 
-> Firstname Lastname. 
+> Susmitha Chereddy. 
 
-Learn more about me in my [GitHub profile page](https://github.com/reiminer)
+Learn more about me in my [GitHub profile page](https://github.com/schereddy)
 
 
 The following is a sample of products created during the _"Data Visualization and Reproducible Research"_ course.  
@@ -37,8 +37,8 @@ Here is my favorite visualization form the project that explains about density o
 
 ## Project 02
 
-In the `project_01/` folder you can find   
-1.data/ :about births in US from 2010-14  
+In the `project_02/` folder you can find   
+1.data/ : Fifa_18 player attributes dataset, Florida_lakes shapes dataset and WestRoxbury Housing Dataset
 2.report/ : HTML report and RMD file for the project  
 3.Code and project report along with README and an RProj file.  
 
@@ -116,6 +116,11 @@ Billboard dataset has [100 rows  × 6 coulmns]
  $ Year  : num [1:100] 2015 2015 2015 2015 2015 ...  
  $ Lyrics: chr [1:100] "this hit that ice cold michelle pfeiffer that white gold this one for them hood girls them good girls straight "| __truncated__ "when your legs dont work like 
 
+ Project 03 folder structure:  
+ 
+ 1.data/ contains all data used in the project  
+ 2.README,PROJECT and HTML Report for the project  
+ 
 **Sample data visualization:** 
 Here a visulization of wordcloud on billboard data
 _[include your favorite visualization from this project here]_
