@@ -1,0 +1,259 @@
+---
+title: "Mini_project-1`"
+author: "Susmitha Chereddy - `schereddy2371@floridapoly.edu`"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Loading Us Birth data from 2000 to 2014
+
+
+```{r}
+birth_data<-read_csv("C:/Susmitha Chereddy/Data_visualization/Mini_project_1_chereddy/data/birth_data.csv")
+str(birth_data)
+```
+
+converting year, month , date_of_month, day_of_week as factor
+
+```{r}
+birth_data <- birth_data %>%
+  mutate(month=as_factor(month)) %>%
+  mutate(year=as_factor(year)) %>%
+  mutate(day_of_week=as_factor(day_of_week)) %>%
+  mutate(date_of_month=as_factor(date_of_month))
+
+str(birth_data)
+
+```
+
+Assigning levels to  Month and day_of_week
+
+```{r}
+
+levels(birth_data$day_of_week) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
+levels(birth_data$month) <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+birth_data
+```
+
+
+```{r}
+birth_data_by_year <- birth_data %>% 
+  group_by(year) %>% 
+  summarize(total_by_year = sum(births))
+
+birth_data_by_year
+
+```
+
+
+
+```{r fig.height = 5, fig.width = 6}
+#ggplot(data= birth_data_by_year,aes(x=year, y=total_by_year),color=purple)+geom_col()
+ggplot(data= birth_data_by_year,aes(x=year, y=total_by_year))+
+  geom_bar(stat="identity",fill="light blue",color="purple")+
+  scale_y_continuous(limits = c(0, 4500000))+
+  labs(title = "US Births by Year from 2000 to 2014",
+       caption="US Births from 2000-2014")+
+  xlab("Year of Birth") +
+  ylab("Total Births")
+
+```
+
+
+```{r}
+birth_data_by_month <- birth_data %>% 
+  group_by(month) %>% 
+  summarize(total_by_month = sum(births))
+
+birth_data_by_month
+```
+
+```{r fig.height = 5, fig.width = 9}
+
+ggplot(data= birth_data_by_month,aes(x=month, y=total_by_month))+
+  geom_bar(stat="identity",fill="light blue",color="purple")+
+  scale_y_continuous(limits = c(0, 6000000))+
+  labs(title = "US Births by month from 2000 to 2014",
+       caption="US Births from 2000-2014")+
+  xlab("Month of Birth") +
+  ylab("Total Births")
+
+```
+
+
+```{r}
+birth_data_by_day <- birth_data %>% 
+  group_by(day_of_week) %>% 
+  summarize(total_by_day = sum(births))
+
+birth_data_by_day
+
+```
+
+```{r}
+ggplot(data= birth_data_by_day,aes(x=day_of_week, y=total_by_day))+
+  geom_bar(stat="identity",fill="light blue",color="purple")+
+  scale_y_continuous(limits = c(0, 11000000))+
+  labs(title = "US Births by day of week from 2000 to 2014",
+       caption="US Births from 2000-2014")+
+  xlab("day in week of Birth") +
+  ylab("Total Births")
+```
+
+```{r}
+birth_data_by_date <- birth_data %>% 
+  group_by(date_of_month) %>% 
+  summarize(total_by_date = sum(births))
+
+birth_data_by_date
+
+```
+
+```{r}
+ggplot(data= birth_data_by_date,aes(x=date_of_month, y=total_by_date))+
+  geom_bar(stat="identity",fill="light blue",color="purple")+
+  scale_y_continuous(limits = c(0, 2500000))+
+  labs(title = "US Births by date of month from 2000 to 2014",
+       caption="US Births from 2000-2014")+
+  xlab("date in month of Birth") +
+  ylab("Total Births")
+```
+
+Let us look at some density plots: This density plots give us a distribution of births very similar to a histogram
+
+```{r}
+ggplot(data=birth_data, aes(births)) + 
+  geom_density()+
+  labs(title = "US Births by Year from 2000 to 2014",
+       caption=" 2000-2014")+
+  xlab("Birth") +
+  ylab("Total density")
+```
+
+Let us look at some density plots: This density plots give us a distribution of births very similar to a histogram
+
+```{r}
+ggplot(data=birth_data, aes(x=births,color=month)) + 
+  geom_density()+
+  labs(title = "US Births by Year from 2000 to 2014",
+       caption=" 2000-2014")+
+  xlab("Birth") +
+  ylab("Density")
+
+```
+Let us answer the same question about low birth rate on weekends with a density plot. here we can see that mean on sat and sun is much less compared to other days.
+
+```{r}
+ggplot(data=birth_data, aes(births,color=year)) + 
+  geom_density()+
+  facet_wrap(~day_of_week)+
+  labs(title = "Distribution of US Births by day of week ",
+       caption="US Births from 2000-2014")+
+  xlab("Births") +
+  ylab("Density")
+```
+
+
+```{r fig.height = 10, fig.width = 10}
+ggplot(data=birth_data, aes(births,color=year)) + 
+  geom_density()+
+  facet_wrap(month~day_of_week)+
+  labs(title = "US Births by Year from 2000 to 2014- Facet wrap",
+       caption=" 2000-2014")+
+  xlab("Birth") +
+  ylab("Density")
+```
+
+Now let's try to more clearly separate weekends and weekdays 
+
+```{r}
+birth_data <- birth_data %>%
+  mutate(is_weekend = if_else(day_of_week == "Sat" | day_of_week == "Sun","Yes","No"))
+birth_data
+```
+
+```{r}
+birth_data_weekend <- birth_data %>% 
+  group_by(is_weekend) %>% 
+  summarize(mean = mean(births))
+
+birth_data_weekend
+```
+
+From this ,we can clearly say that Number of births on the weekend is much higher than the number of births during the week days.
+
+
+Now let's plot some time series plots to see if it can shed more light on distribution of Births data.
+
+```{r}
+birth_data_date <- birth_data %>% arrange(date)
+birth_data_date
+```
+
+# REPORT
+
+This projects aims at summaraizing and analyzing the birth data in US from 2000 - 2014. reports starts with a preliminary understanding of the data with some exploratory analysis and then proceeds towards developing a story about the trend of births in weekdays over weekends. we have used barcharts, density plot and facetwraps to demonstrate the same. In-order to provide additional support, we have provide some mean analysis as well to support our assumption.
+
+__At the end, all our charts and analysis point out to the direction that our hypotheiss that number of births on weekend are low is infact true.__
+
+
+__What were the original charts you planned to create for this assignments?__
+
+I wanted to use some scatter plots, pie charts and timeseries on the data since the data is mostly about date,days, year and months.. however, i quickly realized for the questions i am trying to answer, barcharts/histograms are the best option and I went ahead with a barchart to show how the births on weekend are more than weekdays.
+
+
+```{r fig.height = 10, fig.width = 50}
+ggplot(birth_data,aes(x=date,y=births))+
+  geom_line(color = "purple") + 
+    scale_y_continuous()+
+  labs(title = "US Births by Year from 2000 to 2014 - Timeseries Date by Birth",
+       caption=" 2000-2014")+
+  xlab("Date") +
+  ylab("Birth")
+
+```
+
+This is data does not have a trend based on seasonality and hence we see a lots of spike and lows in the graphs. This is not a good data for timeseries representation
+
+
+```{r}
+birth_data_pie <- birth_data %>% 
+  group_by(day_of_week) %>% 
+  summarize(total_by_day = sum(births))
+
+birth_data_pie
+```
+
+```{r}
+ggplot(birth_data_pie, aes(x = "", y = total_by_day, fill = day_of_week)) +
+  geom_col() +
+  coord_polar(theta = "y")+
+  labs(title = "US Births by Year from 2000 to 2014 pie chart",
+       caption=" 2000-2014")+
+  xlab("pie distribution of births by day") +
+  ylab("Density")
+  
+```
+As shown above pie chart is bit difficult to recognize the size difference between weekend and weekdays rather than a bargrpah.
+
+
+__What story could you tell with your plots?__
+
+After a quick distribution analysis from the data, i found that there was no seasonality to the data rather than a trend from weekend to week days.I wanted to focus on this trend and prove the point that number of births on weekend are less compared to number of births on weekdays. This might due to variety of factors like availability of hospital staff, availability of mode of transportation, people planning to go to hopsital son weekdays.be it any reason, we could clearly see from the graphs that number of births on weekend are much less than number of births on weekdays.
+
+
+__How did you apply the principles of data visualizations and design for this assignment?__
+
+I have used principles of data visualization in terms of interpretability  to understand the graphs and axis well to size them accordingly. I have labelled the axis to make sure the users understand what is represents.I have made adjustments to my axis to make corrections to the scale of x and y-axis so that user can notice the values to point out the spike and low in the data. More over charts have been labelled accordingly wit title and captions to understand them well.
