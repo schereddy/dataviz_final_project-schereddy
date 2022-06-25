@@ -41,7 +41,7 @@ In this project, I explored ... _[short description of your revised project goes
 **Sample data visualization:** 
 
 _[include your favorite visualization from this project here]_
-![project3_image](https://user-images.githubusercontent.com/104657112/175608197-b43dc441-a885-45f7-bae0-d5ee8a59b8f5.png)
+![project3_image_2](https://user-images.githubusercontent.com/104657112/175614063-0251c1fe-06ec-479c-9910-329f809d2226.png)
 
 ### Moving Forward
 
