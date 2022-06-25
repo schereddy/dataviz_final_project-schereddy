@@ -1,4 +1,4 @@
-in this project we are trying to anlayse the weather data for the city of tampa and also build a wordcloud using a billboards dataset.   
+In this project we are trying to anlayse the weather data for the city of tampa and also build a wordcloud using a billboards dataset.   
 we are tyring to see what are the hottest and coldest months in tampa.  
 tampa weather dataset has [367 rows × 6 columns ]   
  $ year         : num [1:367] 2016 2016 2016 2016 2016     
@@ -8,6 +8,7 @@ tampa weather dataset has [367 rows × 6 columns ]
  $ max_temp     : num [1:367] 81 73 61 66 68 67 72 76 78 72 ...    
  $ min_temp     : num [1:367] 70 59 50 49 49 54 56 63 62 56 ...   
 
+For this billboard data, we are trying analyze what the frequently used words on a Billboard.  
 Billboard dataset has [100 rows  × 6 coulmns]   
  $ Rank  : num [1:100] 1 2 3 4 5 6 7 8 9 10 ...  
  $ Song  : chr [1:100] "uptown funk" "thinking out loud" "see you again" "trap queen" ...  
