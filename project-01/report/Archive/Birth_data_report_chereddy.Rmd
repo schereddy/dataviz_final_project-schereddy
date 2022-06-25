@@ -19,7 +19,7 @@ Loading Us Birth data from 2000 to 2014
 
 
 ```{r}
-birth_data<-read_csv("data/birth_data.csv")
+birth_data<-read_csv("C:/Susmitha Chereddy/Data_visualization/Mini_project_1_chereddy/data/birth_data.csv")
 str(birth_data)
 ```
 
@@ -257,3 +257,12 @@ After a quick distribution analysis from the data, i found that there was no sea
 __How did you apply the principles of data visualizations and design for this assignment?__
 
 I have used principles of data visualization in terms of interpretability  to understand the graphs and axis well to size them accordingly. I have labelled the axis to make sure the users understand what is represents.I have made adjustments to my axis to make corrections to the scale of x and y-axis so that user can notice the values to point out the spike and low in the data. More over charts have been labelled accordingly wit title and captions to understand them well.
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

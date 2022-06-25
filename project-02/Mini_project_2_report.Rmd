@@ -21,7 +21,7 @@ __interactive plot using fifa18 dataset__ : here we are trying to see if age gro
 fifa18 dataset contains 17076 rows and 40 columns depicting different attributes of the player like stamina,potential, ability to kick, pass and display aggressiona nd balance.
 	
 ```{r cars}
-fifa <- read_csv("C:/Susmitha Chereddy/Data_visualization/Mini_project_2_chereddy/data/fifa18.csv")
+fifa <- read_csv("data/fifa18.csv")
 fifa
 ```
 
@@ -107,7 +107,7 @@ __spatial visualization using florida lakes data set__: plotting to visualize th
 ```{r}
 library(sf)
 
-florida_shapes <- read_sf("C:/Susmitha Chereddy/Data_visualization/Mini_project_2_chereddy/data/Florida_Lakes/Florida_Lakes/Florida_Lakes.shp") 
+florida_shapes <- read_sf("data/Florida_Lakes/Florida_Lakes/Florida_Lakes.shp") 
 florida_shapes
 ```
 
@@ -116,7 +116,6 @@ Visualizing all lakes in Florida
 ggplot()+
  geom_sf(data = florida_shapes, aes(fill = SHAPEAREA),
  color = "black", size = 0.15) +
- scale_fill_gradient(labels = scales::comma)+
  theme(legend.position = "right")+
  scale_fill_continuous(low="Darkblue", high="blue", 
                        guide="colorbar",na.value="DarkGrey")+
@@ -137,7 +136,6 @@ florida_shapes %>%
  ggplot() +
  geom_sf(aes(fill = SHAPEAREA),
  color = "black", size = 0.15) +
- scale_fill_gradient(labels = scales::comma)+
  theme(legend.position = "right")+
  scale_fill_continuous(low="navyblue", high="blue", 
                        guide="colorbar",na.value="DarkGrey")+
@@ -157,7 +155,6 @@ florida_shapes %>%
  ggplot() +
  geom_sf(aes(fill = SHAPEAREA),
  color = "black", size = 0.15) +
- scale_fill_gradient(labels = scales::comma)+
  theme(legend.position = "right")+
  scale_fill_continuous(low="navyblue", high="blue", 
                        guide="colorbar",na.value="DarkGrey")+
@@ -174,7 +171,6 @@ Visualizing lakes of florida with Perimeter as fill
 ggplot()+
  geom_sf(data = florida_shapes, aes(fill = PERIMETER),
  color = "black", size = 0.15) +
- scale_fill_gradient(labels = scales::comma)+
  theme(legend.position = "right")+
  scale_fill_continuous(low="Darkblue", high="blue", 
                        guide="colorbar",na.value="DarkGrey")+
@@ -321,7 +317,7 @@ ggplot(predicted_house,
  fill = HALF_BATH),
  alpha = 0.5) +
  geom_line(aes(color = HALF_BATH), size = 1) +
- guides(fill = FALSE, color = FALSE) +
+ guides(fill = "none", color = "none") +
  facet_wrap(vars(HALF_BATH)) +
  theme_minimal()+
  labs(title = "plot for fitted values for each row",
